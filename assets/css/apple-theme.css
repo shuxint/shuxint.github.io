@@ -489,3 +489,20 @@ a.btn {
   vertical-align: middle;
   opacity: 0.85;
 }
+
+/* ---------- Portfolio single-item back link ---------- */
+.pagination:has(> a:only-child) {
+  display: block !important;
+}
+.pagination:has(> a:only-child) .pagination--pager {
+  display: inline-block;
+  width: auto !important;
+  border-radius: var(--a-radius-pill);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--a-text) !important;
+}
+.pagination:has(> a:only-child) .pagination--pager:hover {
+  background: var(--a-surface);
+}
