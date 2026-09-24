@@ -479,3 +479,13 @@ a.btn {
     left: -26px;
   }
 }
+
+/* ---------- Visit counter ---------- */
+.visit-counter {
+  text-align: center;
+  margin: 0 0 10px;
+}
+.visit-counter img {
+  vertical-align: middle;
+  opacity: 0.85;
+}
