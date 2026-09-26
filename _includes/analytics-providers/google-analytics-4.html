@@ -1,8 +1,25 @@
-<script async src="https://www.googletagmanager.com/gtag/js?id={{site.analytics.google.tracking_id}}"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  (function () {
+    // Visit the site once with ?owner=1 on each of your own browsers to stop tracking yourself;
+    // ?owner=0 turns tracking back on for that browser.
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('owner') === '1') localStorage.setItem('ga_owner', '1');
+    if (params.get('owner') === '0') localStorage.removeItem('ga_owner');
+    if (localStorage.getItem('ga_owner') === '1') return;
 
-  gtag('config', '{{site.analytics.google.tracking_id}}');
+    // Skip bots, crawlers, headless browsers and fake "Nexus 5X" (Googlebot-style) visitors.
+    var ua = navigator.userAgent || '';
+    var botPattern = /bot|crawl|spider|slurp|headless|lighthouse|pagespeed|preview|scanner|python|curl|wget|phantom|selenium|puppeteer|playwright|Nexus 5X/i;
+    if (navigator.webdriver || botPattern.test(ua)) return;
+
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id={{site.analytics.google.tracking_id}}';
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', '{{site.analytics.google.tracking_id}}');
+  })();
 </script>
